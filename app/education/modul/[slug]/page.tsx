@@ -124,7 +124,7 @@ export default function ArticleModulePage() {
             </div>
             <div className="flex items-center text-sm text-muted-foreground">
               <Eye className="w-4 h-4 mr-1" />{" "}
-              {moduleItem.students.toLocaleString()} views
+              {moduleItem.students.toLocaleString()} students
             </div>
           </div>
           <h1 className="text-3xl font-bold mb-4">{moduleItem.title}</h1>

@@ -60,7 +60,6 @@ export function LearningModules() {
         const matchesSearch =
           module.title.toLowerCase().includes(q) ||
           module.description.toLowerCase().includes(q) ||
-          module.level.toLowerCase().includes(q) ||
           module.category.toLowerCase().includes(q);
         return matchesCategory && matchesSearch;
       });
@@ -174,16 +173,18 @@ export function LearningModules() {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
-            Modul Pembelajaran{" "}
-            <span className="text-primary">Komprehensif</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Pilih dari materi yang dirancang ahli kami untuk membawa Anda dari
-            pemula keuangan menjadi master uang.
+    <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 flex items-start justify-center">
+        <div className="w-full max-w-6xl mx-auto h-64 mt-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/15 blur-3xl rounded-[3rem]" />
+      </div>
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-14">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-balance">
+            Jelajahi <span className="text-primary">Modul Belajar</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
+            Kumpulan materi kurasi untuk mempercepat perjalanan literasi
+            keuangan Anda: artikel mendalam dan video ringkas siap jelajah.
           </p>
         </div>
 

@@ -10,7 +10,6 @@ export const articleModules: LearningModule[] = [
     category: "budgeting",
     duration: "15 menit",
     students: 15420,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/dasar-dasar-penganggaran.svg",
     content: [
@@ -98,7 +97,6 @@ export const articleModules: LearningModule[] = [
     category: "investing",
     duration: "20 menit",
     students: 12350,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/fundamental-investasi.svg",
     content: [
@@ -184,7 +182,6 @@ export const articleModules: LearningModule[] = [
     category: "planning",
     duration: "12 menit",
     students: 9870,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/strategi-dana-darurat.svg",
     content: [
@@ -269,7 +266,6 @@ export const articleModules: LearningModule[] = [
     category: "debt",
     duration: "14 menit",
     students: 4200,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/strategi-keluar-utang.svg",
     content: [
@@ -297,7 +293,6 @@ export const articleModules: LearningModule[] = [
     category: "debt",
     duration: "10 menit",
     students: 3100,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/memahami-skor-kredit.svg",
     content: [
@@ -325,7 +320,6 @@ export const articleModules: LearningModule[] = [
     category: "insurance",
     duration: "13 menit",
     students: 2950,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/asuransi-dasar-yang-diperlukan.svg",
     content: [
@@ -353,7 +347,6 @@ export const articleModules: LearningModule[] = [
     category: "insurance",
     duration: "11 menit",
     students: 2100,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/memilih-polis-jiwa-term.svg",
     content: [
@@ -381,7 +374,6 @@ export const articleModules: LearningModule[] = [
     category: "psychology",
     duration: "16 menit",
     students: 3300,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/psikologi-keputusan-keuangan.svg",
     content: [
@@ -409,7 +401,6 @@ export const articleModules: LearningModule[] = [
     category: "psychology",
     duration: "9 menit",
     students: 2800,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/mengatasi-inflasi-gaya-hidup.svg",
     content: [
@@ -437,7 +428,6 @@ export const articleModules: LearningModule[] = [
     category: "psychology",
     duration: "8 menit",
     students: 2600,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/kendali-impuls-belanja.svg",
     content: [
@@ -465,7 +455,6 @@ export const articleModules: LearningModule[] = [
     category: "budgeting",
     duration: "17 menit",
     students: 1900,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/optimasi-anggaran-lanjutan.svg",
     content: [
@@ -492,7 +481,6 @@ export const articleModules: LearningModule[] = [
     category: "investing",
     duration: "18 menit",
     students: 2500,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/dasar-analisis-saham.svg",
     content: [
@@ -519,7 +507,6 @@ export const articleModules: LearningModule[] = [
     category: "planning",
     duration: "14 menit",
     students: 1750,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/rencana-keuangan-lima-tahun.svg",
     content: [
@@ -546,7 +533,6 @@ export const articleModules: LearningModule[] = [
     category: "debt",
     duration: "9 menit",
     students: 1320,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/negosiasi-bunga-pinjaman.svg",
     content: [
@@ -573,7 +559,6 @@ export const articleModules: LearningModule[] = [
     category: "insurance",
     duration: "12 menit",
     students: 1470,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/perlindungan-aset-kritis.svg",
     content: [
@@ -600,7 +585,6 @@ export const articleModules: LearningModule[] = [
     category: "psychology",
     duration: "10 menit",
     students: 1610,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/mindset-investor-disiplin.svg",
     content: [
@@ -627,7 +611,6 @@ export const articleModules: LearningModule[] = [
     category: "investing",
     duration: "15 menit",
     students: 1880,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/alokasi-aset-dasar.svg",
     content: [
@@ -654,7 +637,6 @@ export const articleModules: LearningModule[] = [
     category: "planning",
     duration: "11 menit",
     students: 1760,
-    level: "Pemula",
     type: "article",
   image: "/illustrations/roadmap-tabungan-tujuan.svg",
     content: [
@@ -681,7 +663,6 @@ export const articleModules: LearningModule[] = [
     category: "debt",
     duration: "13 menit",
     students: 1210,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/restrukturisasi-utang-tepat.svg",
     content: [
@@ -708,7 +689,6 @@ export const articleModules: LearningModule[] = [
     category: "insurance",
     duration: "9 menit",
     students: 1290,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/analisis-klaim-asuransi.svg",
     content: [
@@ -735,7 +715,6 @@ export const articleModules: LearningModule[] = [
     category: "psychology",
     duration: "12 menit",
     students: 1410,
-    level: "Menengah",
     type: "article",
   image: "/illustrations/framework-keputusan-rational.svg",
     content: [
@@ -762,7 +741,6 @@ export const articleModules: LearningModule[] = [
     category: "investing",
     duration: "17 menit",
     students: 1580,
-    level: "Lanjutan",
     type: "article",
   image: "/illustrations/diversifikasi-multi-aset.svg",
     content: [
@@ -789,7 +767,6 @@ export const articleModules: LearningModule[] = [
     category: "planning",
     duration: "16 menit",
     students: 1490,
-    level: "Lanjutan",
     type: "article",
   image: "/illustrations/arsitektur-tujuan-keuangan.svg",
     content: [

@@ -242,3 +242,21 @@ html {
     border-width: 2px;
   }
 }
+
+/* ===== Custom Themed Number Input ===== */
+/* Hide default native spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  /* Firefox */
+  -moz-appearance: textfield;
+}
+
+/* Utility for custom number input wrapper (optional future reuse) */
+.number-input-wrapper:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+  border-color: var(--ring);
+}
