@@ -6,6 +6,7 @@ import Faq from "../components/faq";
 import { CTA } from "../components/cta";
 import { Footer } from "../components/footer";
 import { Navigation } from "../components/navigation";
+import { AnimateInView } from "@/components/motion";
 
 export const metadata: Metadata = {
   title: "Beranda – Edukasi Keuangan Praktis",
@@ -39,36 +40,21 @@ export default function HomePage() {
       <div className="relative z-10">
         <Navigation />
         <main>
-          <section
-            className="relative reveal-base reveal-fade-up"
-            style={{ animationDelay: "0ms" }}
-          >
+          <AnimateInView>
             <Hero />
-          </section>
-          <section
-            className="relative reveal-base reveal-fade-up"
-            style={{ animationDelay: "80ms" }}
-          >
+          </AnimateInView>
+          <AnimateInView delay={0.1}>
             <Stats />
-          </section>
-          <section
-            className="relative reveal-base reveal-fade-up"
-            style={{ animationDelay: "120ms" }}
-          >
+          </AnimateInView>
+          <AnimateInView delay={0.2}>
             <Features />
-          </section>
-          <section
-            className="relative reveal-base reveal-fade-up"
-            style={{ animationDelay: "160ms" }}
-          >
+          </AnimateInView>
+          <AnimateInView delay={0.3}>
             <Faq />
-          </section>
-          <section
-            className="relative reveal-base reveal-fade-up"
-            style={{ animationDelay: "200ms" }}
-          >
+          </AnimateInView>
+          <AnimateInView delay={0.4}>
             <CTA />
-          </section>
+          </AnimateInView>
         </main>
         <Footer />
       </div>
