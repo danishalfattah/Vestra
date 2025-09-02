@@ -52,7 +52,10 @@ export default function EventClient({ events }: { events: EventItem[] }) {
     // Scroll to form
     const el = document.getElementById("register");
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Use a small timeout to allow the UI to update before scrolling
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
     }
   };
 
@@ -421,7 +424,7 @@ function EmailRegistrationForm({
         {forceClosed
           ? "Pendaftaran Ditutup"
           : !selectedEvent
-          ? "Pilih Event Dulu"
+          ? "Daftar Event"
           : loading
           ? "Mendaftarkan..."
           : selectedEvent.registrationOpen !== false

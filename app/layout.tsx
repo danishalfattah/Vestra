@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -41,10 +41,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0f0f16" },
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-  ],
   openGraph: {
     type: "website",
     locale: "id_ID",
@@ -79,6 +75,13 @@ export const metadata: Metadata = {
     apple: "/icon.png",
     other: [{ rel: "mask-icon", url: "/logo.svg" }],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f16" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
 };
 
 export default function RootLayout({
