@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import EventClient from "@/components/event-client";
+import { AnimateInView } from "@/components/motion";
 
 export const metadata: Metadata = {
   title: "Event Finansial – Jadwal & Pendaftaran",
@@ -233,7 +234,9 @@ export default function EventPage() {
       <div className="relative z-10 flex flex-col flex-1">
         <Navigation />
         <main className="flex-1 pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-          <EventClient events={events} />
+          <AnimateInView>
+            <EventClient events={events} />
+          </AnimateInView>
         </main>
         <Footer />
       </div>
