@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -11,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Clock, Eye, Search, Play } from "lucide-react";
+import { Clock, Eye, Search, Play, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { articleModules } from "@/lib/articles";
@@ -24,6 +25,102 @@ export function LearningModules() {
   const [videoPage, setVideoPage] = useState(1);
   const [pageSizeArticles, setPageSizeArticles] = useState(6); // default desktop (lg)
   const [pageSizeVideos, setPageSizeVideos] = useState(6); // default desktop (lg)
+  const [articleSort, setArticleSort] = useState("default");
+  const [videoSort, setVideoSort] = useState("default");
+
+  // Custom popover sort select (styled dropdown)
+  const SortSelect = ({
+    value,
+    onChange,
+    options,
+    ariaLabel,
+  }: {
+    value: string;
+    onChange: (v: string) => void;
+    options: { value: string; label: string }[];
+    ariaLabel: string;
+  }) => {
+    const [open, setOpen] = useState(false);
+    const ref = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      const handleClick = (e: MouseEvent) => {
+        if (!ref.current) return;
+        if (!ref.current.contains(e.target as Node)) setOpen(false);
+      };
+      const handleKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setOpen(false);
+      };
+      window.addEventListener("mousedown", handleClick);
+      window.addEventListener("keydown", handleKey);
+      return () => {
+        window.removeEventListener("mousedown", handleClick);
+        window.removeEventListener("keydown", handleKey);
+      };
+    }, []);
+
+    const current = options.find((o) => o.value === value)?.label || value;
+
+    return (
+      <div ref={ref} className="relative inline-block text-left w-56">
+        <button
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label={ariaLabel}
+          onClick={() => setOpen((o) => !o)}
+          className={
+            "group h-9 inline-flex w-full items-center gap-2 rounded-md border border-border bg-background/70 backdrop-blur px-3 pr-9 text-sm font-medium shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 hover:border-primary/60 " +
+            (open ? "border-primary ring-2 ring-primary/30" : "")
+          }
+        >
+          <span className="whitespace-nowrap">{current}</span>
+          <ChevronDown
+            className={
+              "pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 transition-transform text-muted-foreground " +
+              (open ? "rotate-180" : "")
+            }
+          />
+        </button>
+        {open && (
+          <div
+            role="listbox"
+            tabIndex={-1}
+            className="z-40 absolute right-0 mt-2 w-full origin-top-right rounded-md border border-border/70 bg-popover/95 backdrop-blur shadow-xl ring-1 ring-black/5 focus:outline-none animate-in fade-in slide-in-from-top-1"
+          >
+            <ul className="py-1 max-h-64 overflow-auto text-sm">
+              {options.map((o) => {
+                const active = o.value === value;
+                return (
+                  <li key={o.value}>
+                    <button
+                      role="option"
+                      aria-selected={active}
+                      onClick={() => {
+                        onChange(o.value);
+                        setOpen(false);
+                      }}
+                      className={
+                        "w-full text-left px-3 py-2 flex items-center justify-between rounded-md transition-colors " +
+                        (active
+                          ? "bg-primary text-primary-foreground shadow-sm"
+                          : "hover:bg-primary/10 text-foreground")
+                      }
+                    >
+                      <span>{o.label}</span>
+                      {active && (
+                        <span className="ml-2 inline-block h-2 w-2 rounded-full bg-primary-foreground/80" />
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   // Determine viewport-based page size (articles & videos):
   // mobile (<640)=3, tablet (<1024)=4, desktop (>=1024)=6
@@ -40,18 +137,35 @@ export function LearningModules() {
     return () => window.removeEventListener("resize", computeSize);
   }, []);
 
-  const categories = [
-    { id: "all", name: "Semua Materi" },
-    { id: "budgeting", name: "Penganggaran" },
-    { id: "investing", name: "Investasi" },
-    { id: "planning", name: "Perencanaan" },
-    { id: "debt", name: "Manajemen Utang" },
-    { id: "insurance", name: "Asuransi" },
-    { id: "psychology", name: "Psikologi Keuangan" },
-  ];
+  const categories = useMemo(
+    () => [
+      { id: "all", name: "Semua Materi" },
+      { id: "budgeting", name: "Penganggaran" },
+      { id: "investing", name: "Investasi" },
+      { id: "planning", name: "Perencanaan" },
+      { id: "debt", name: "Manajemen Utang" },
+      { id: "insurance", name: "Asuransi" },
+      { id: "psychology", name: "Psikologi Keuangan" },
+    ],
+    []
+  );
+
+  // Apply category from query param ?c= if valid
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const qp = searchParams.get("c");
+    if (qp && categories.some((c) => c.id === qp)) {
+      setSelectedCategory(qp);
+    }
+  }, [searchParams, categories]);
 
   const { articles, videos, totalArticlePages, totalVideoPages } =
     useMemo(() => {
+      const parseDuration = (d: string) => {
+        if (!d) return 0;
+        const n = parseInt(d.replace(/[^0-9]/g, ""), 10);
+        return isNaN(n) ? 0 : n;
+      };
       const combined = [...articleModules, ...videoModules];
       const filtered = combined.filter((module) => {
         const matchesCategory =
@@ -63,8 +177,43 @@ export function LearningModules() {
           module.category.toLowerCase().includes(q);
         return matchesCategory && matchesSearch;
       });
-      const articleAll = filtered.filter((m) => m.type === "article");
-      const videoAll = filtered.filter((m) => m.type === "video");
+      let articleAll = filtered.filter((m) => m.type === "article");
+      let videoAll = filtered.filter((m) => m.type === "video");
+
+      // Apply sorting
+      if (articleSort !== "default") {
+        articleAll = [...articleAll].sort((a, b) => {
+          switch (articleSort) {
+            case "views-desc":
+              return (b.students || 0) - (a.students || 0);
+            case "views-asc":
+              return (a.students || 0) - (b.students || 0);
+            case "duration-asc":
+              return parseDuration(a.duration) - parseDuration(b.duration);
+            case "duration-desc":
+              return parseDuration(b.duration) - parseDuration(a.duration);
+            default:
+              return 0;
+          }
+        });
+      }
+      if (videoSort !== "default") {
+        videoAll = [...videoAll].sort((a, b) => {
+          switch (videoSort) {
+            case "views-desc":
+              return (b.students || 0) - (a.students || 0);
+            case "views-asc":
+              return (a.students || 0) - (b.students || 0);
+            case "duration-asc":
+              return parseDuration(a.duration) - parseDuration(b.duration);
+            case "duration-desc":
+              return parseDuration(b.duration) - parseDuration(a.duration);
+            default:
+              return 0;
+          }
+        });
+      }
+
       return {
         articles: articleAll,
         videos: videoAll,
@@ -77,7 +226,14 @@ export function LearningModules() {
           Math.ceil(videoAll.length / pageSizeVideos)
         ),
       };
-    }, [selectedCategory, searchQuery, pageSizeArticles, pageSizeVideos]);
+    }, [
+      selectedCategory,
+      searchQuery,
+      pageSizeArticles,
+      pageSizeVideos,
+      articleSort,
+      videoSort,
+    ]);
 
   // Helper untuk menampilkan label kategori yang lebih ramah
   const categoryLabel = (cat: string) => {
@@ -103,7 +259,7 @@ export function LearningModules() {
   useEffect(() => {
     setArticlePage(1);
     setVideoPage(1);
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, articleSort, videoSort]);
 
   useEffect(() => {
     if (articlePage > totalArticlePages) setArticlePage(totalArticlePages);
@@ -133,8 +289,12 @@ export function LearningModules() {
     size: number;
   }) => {
     if (total <= 1) return null;
+    // Dynamic window: show at most 5 consecutive page numbers centered around current as it moves forward.
+    let start = current;
+    const end = Math.min(start + 4, total);
+    if (end - start + 1 < 5) start = Math.max(1, end - 4);
     const pages: number[] = [];
-    for (let i = 1; i <= total; i++) pages.push(i);
+    for (let i = start; i <= end; i++) pages.push(i);
     return (
       <div className="flex flex-col items-center gap-2 mt-4">
         <div className="flex items-center gap-2 flex-wrap justify-center">
@@ -173,7 +333,10 @@ export function LearningModules() {
   };
 
   return (
-    <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section
+      id="modules"
+      className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+    >
       <div className="pointer-events-none absolute inset-0 flex items-start justify-center">
         <div className="w-full max-w-6xl mx-auto h-64 mt-0 bg-gradient-to-br from-primary/15 via-transparent to-accent/15 blur-3xl rounded-[3rem]" />
       </div>
@@ -219,9 +382,26 @@ export function LearningModules() {
         </div>
 
         {/* Artikel Section */}
-        <div className="space-y-6">
+        <div className="space-y-12">
           <div>
-            <h3 className="text-2xl font-semibold mb-4">Modul Artikel</h3>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+              <h3 className="text-2xl font-semibold">Modul Artikel</h3>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Urutkan:</span>
+                <SortSelect
+                  ariaLabel="Urutkan artikel"
+                  value={articleSort}
+                  onChange={setArticleSort}
+                  options={[
+                    { value: "default", label: "Default" },
+                    { value: "views-desc", label: "Views Terbanyak" },
+                    { value: "views-asc", label: "Views Tersedikit" },
+                    { value: "duration-asc", label: "Durasi Terpendek" },
+                    { value: "duration-desc", label: "Durasi Terpanjang" },
+                  ]}
+                />
+              </div>
+            </div>
             {articles.length === 0 ? (
               <p className="text-sm text-muted-foreground">
                 Tidak ada artikel cocok.
@@ -285,7 +465,24 @@ export function LearningModules() {
             )}
           </div>
           <div>
-            <h3 className="text-2xl font-semibold mb-4">Video Pembelajaran</h3>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+              <h3 className="text-2xl font-semibold">Video Pembelajaran</h3>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Urutkan:</span>
+                <SortSelect
+                  ariaLabel="Urutkan video"
+                  value={videoSort}
+                  onChange={setVideoSort}
+                  options={[
+                    { value: "default", label: "Default" },
+                    { value: "views-desc", label: "Views Terbanyak" },
+                    { value: "views-asc", label: "Views Tersedikit" },
+                    { value: "duration-asc", label: "Durasi Terpendek" },
+                    { value: "duration-desc", label: "Durasi Terpanjang" },
+                  ]}
+                />
+              </div>
+            </div>
             {videos.length === 0 ? (
               <p className="text-sm text-muted-foreground">
                 Tidak ada video cocok.

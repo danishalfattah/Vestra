@@ -260,3 +260,91 @@ input[type="number"] {
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
   border-color: var(--ring);
 }
+
+@layer utilities {
+  /* Smooth vertical fade between stacked sections */
+  .section-fade {
+    position: relative;
+  }
+  .section-fade > * {
+    position: relative;
+    z-index: 10;
+  }
+  /* Top fade (except first) */
+  .section-fade:not(:first-of-type)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      var(--background) 0%,
+      transparent 70%
+    );
+    z-index: 0;
+  }
+  /* Bottom subtle shadow fade (except last) */
+  .section-fade:not(:last-of-type)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      color-mix(in oklab, var(--background) 96%, transparent) 0%,
+      transparent 65%
+    );
+    z-index: 0;
+  }
+}
+
+/* ===== Global Cursor Rules for Interactable Elements ===== */
+@layer base {
+  /* Default pointer for clearly clickable elements */
+  button,
+  [role="button"],
+  a[href],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  summary,
+  details[role="button"],
+  .interactive,
+  [data-interactive],
+  [aria-haspopup="true"],
+  [data-state="open"],
+  [data-state="closed"] {
+    cursor: pointer;
+  }
+
+  /* Labels usually toggle something */
+  label {
+    cursor: pointer;
+  }
+
+  /* Override for disabled / aria-disabled elements */
+  button:disabled,
+  button[disabled],
+  [role="button"][aria-disabled="true"],
+  a[aria-disabled="true"],
+  .disabled,
+  [data-disabled] {
+    cursor: not-allowed;
+  }
+
+  /* Keep text / number inputs & textareas with text cursor */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="number"],
+  textarea {
+    cursor: text;
+  }
+}

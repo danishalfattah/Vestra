@@ -124,7 +124,7 @@ export default function ArticleModulePage() {
             </div>
             <div className="flex items-center text-sm text-muted-foreground">
               <Eye className="w-4 h-4 mr-1" />{" "}
-              {moduleItem.students.toLocaleString()} students
+              {moduleItem.students.toLocaleString()} views
             </div>
           </div>
           <h1 className="text-3xl font-bold mb-4">{moduleItem.title}</h1>
@@ -136,7 +136,7 @@ export default function ArticleModulePage() {
         {moduleItem.content && (
           <div className="space-y-6 mb-8">
             {moduleItem.content.map((section, index) => (
-              <Card key={index} className="bg-card border-border">
+              <Card key={index} className="bg-card border-border py-6 ">
                 <CardHeader>
                   <CardTitle className="text-xl">{section.title}</CardTitle>
                 </CardHeader>
@@ -151,7 +151,7 @@ export default function ArticleModulePage() {
         )}
 
         {hasQuiz && !quizSubmitted && currentQuestion && (
-          <Card className="bg-primary/5 border-primary/20">
+          <Card className="bg-primary/5 border-primary/20 pt-6">
             <CardHeader>
               <CardTitle className="text-xl flex items-center justify-between">
                 <div className="flex items-center">
@@ -245,7 +245,7 @@ export default function ArticleModulePage() {
 
         {hasQuiz && quizSubmitted && (
           <div className="space-y-6">
-            <Card className="bg-primary/5 border-primary/20">
+            <Card className="bg-primary/5 border-primary/20 pt-6">
               <CardContent className="text-center p-8">
                 <CheckCircle className="w-16 h-16 mx-auto mb-4 text-primary" />
                 <h3 className="text-2xl font-bold mb-2">Kuis Selesai!</h3>
@@ -268,7 +268,7 @@ export default function ArticleModulePage() {
                 </Button>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="pt-6">
               <CardHeader>
                 <CardTitle>Review Jawaban</CardTitle>
               </CardHeader>

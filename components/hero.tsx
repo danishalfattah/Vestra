@@ -11,14 +11,15 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-balance ">
-                Kuasai <span className="text-primary">Masa Depan Keuangan</span>{" "}
-                Anda dengan Pembelajaran Cerdas
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-balance">
+                Bangun <span className="text-primary">Fondasi Keuangan</span>{" "}
+                Kuat Secara Terstruktur & Praktis
               </h1>
-              <p className="text-lg text-muted-foreground text-pretty max-w-2xl">
-                Buka kekuatan literasi keuangan dengan platform interaktif kami.
-                Pelajari penganggaran, investasi, dan manajemen kekayaan melalui
-                pelajaran menarik yang dirancang untuk generasi digital.
+              <p className="text-lg text-muted-foreground text-pretty max-w-2xl leading-relaxed">
+                Akses materi ringkas, modul bertahap, kalkulator interaktif, dan
+                event tematik untuk bantu Anda menguasai dasar penting:
+                budgeting, investasi, proteksi risiko, dan perencanaan jangka
+                panjang. Fokus pada pemahaman, bukan sekadar teori.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -54,7 +55,6 @@ export function Hero() {
                     <div className="w-8 h-8 bg-chart-4 rounded-sm"></div>
                   </div>
 
-                  {/* Connecting Lines */}
                   <svg
                     className="absolute inset-0 w-full h-full"
                     viewBox="0 0 320 320"
@@ -114,7 +114,6 @@ export function Hero() {
                   </svg>
                 </div>
               </div>
-              {/* Background Glow (static) */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10 rounded-3xl blur-3xl"></div>
             </div>
           </div>

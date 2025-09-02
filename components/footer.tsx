@@ -1,72 +1,63 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
+  const year = new Date().getFullYear();
+  const categories = [
+    { label: "Penganggaran", slug: "budgeting" },
+    { label: "Investasi", slug: "investing" },
+    { label: "Perencanaan", slug: "planning" },
+    { label: "Utang", slug: "debt" },
+    { label: "Asuransi", slug: "insurance" },
+    { label: "Psikologi", slug: "psychology" },
+  ];
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <div className="space-y-4">
-            <Link href="/" className="text-2xl font-bold text-primary">
-              Vestra
+    <footer className="relative border-t border-border bg-card/80 backdrop-blur supports-[backdrop-filter]:bg-card/65">
+      {/* Decorative background */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-24 -right-16 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-0 -left-20 w-80 h-80 rounded-full bg-accent/5 blur-3xl" />
+      </div>
+
+      {/* Main Grid */}
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid gap-10 md:gap-14 md:grid-cols-12">
+          {/* Brand / Intro */}
+          <div className="md:col-span-5 space-y-4">
+            <Link
+              href="/"
+              className="inline-flex items-center group"
+              aria-label="VESTRA Home"
+            >
+              <Image
+                src="/logo.svg"
+                alt="VESTRA"
+                width={160}
+                height={40}
+                className="h-8 w-auto select-none pointer-events-none group-hover:brightness-110 transition"
+                loading="lazy"
+                decoding="async"
+              />
             </Link>
-            <p className="text-muted-foreground text-sm">
-              Platform edukasi keuangan terdepan untuk generasi digital.
-              Pelajari, praktikkan, dan kuasai keterampilan keuangan Anda.
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
+              Artikel mendalam, video ringkas, dan kalkulator praktis untuk
+              membantu Anda membuat keputusan finansial yang lebih baik.
             </p>
-            <div className="flex space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:text-primary"
-              >
-                <Facebook className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:text-primary"
-              >
-                <Twitter className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:text-primary"
-              >
-                <Instagram className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:text-primary"
-              >
-                <Linkedin className="h-4 w-4" />
-              </Button>
-            </div>
+            <p className="text-[11px] text-muted-foreground/60">
+              Konten bersifat edukatif, bukan saran investasi.
+            </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Tautan Cepat</h3>
+          {/* Navigation */}
+          <div className="md:col-span-3 space-y-4 text-sm">
+            <h3 className="font-medium text-foreground/90">Menu</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors text-muted-foreground"
                 >
                   Beranda
                 </Link>
@@ -74,82 +65,54 @@ export function Footer() {
               <li>
                 <Link
                   href="/education"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors text-muted-foreground"
                 >
-                  Materi
+                  Edukasi
                 </Link>
               </li>
               <li>
                 <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  href="/event"
+                  className="hover:text-primary transition-colors text-muted-foreground"
                 >
-                  Tentang Kami
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Blog
+                  Event
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Kontak</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center space-x-2 text-muted-foreground">
-                <Mail className="h-4 w-4" />
-                <span>support@vestra.finance</span>
-              </li>
-              <li className="flex items-center space-x-2 text-muted-foreground">
-                <Phone className="h-4 w-4" />
-                <span>+62 21 1234 5678</span>
-              </li>
-              <li className="flex items-center space-x-2 text-muted-foreground">
-                <MapPin className="h-4 w-4" />
-                <span>Jakarta, Indonesia</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Newsletter</h3>
-            <p className="text-muted-foreground text-sm">
-              Dapatkan tips keuangan terbaru dan update materi langsung di inbox
-              Anda.
-            </p>
-            <div className="flex space-x-2">
-              <Input placeholder="Email Anda" className="flex-1" />
-              <Button className="bg-primary hover:bg-primary/90">
-                Berlangganan
-              </Button>
+          {/* Categories */}
+          <div className="md:col-span-4 space-y-4 text-sm">
+            <h3 className="font-medium text-foreground/90">Kategori</h3>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/education?c=${cat.slug}#modules`}
+                  className="text-xs rounded-full border border-border/60 px-3 py-1.5 text-muted-foreground hover:border-primary/60 hover:text-primary transition-colors bg-background/40 backdrop-blur-sm"
+                >
+                  {cat.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm">
-            © 2025 Vestra. Semua hak dilindungi.
+        {/* Bottom Bar */}
+        <div className="mt-14 flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-t border-border/60 pt-6">
+          <p className="text-xs text-muted-foreground">
+            © {year} VESTRA. Semua hak dilindungi.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-primary text-sm transition-colors"
-            >
-              Kebijakan Privasi
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-muted-foreground/80">
+            <Link href="#" className="hover:text-primary transition-colors">
+              Privasi
             </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground hover:text-primary text-sm transition-colors"
-            >
-              Syarat & Ketentuan
+            <Link href="#" className="hover:text-primary transition-colors">
+              Syarat
             </Link>
+            <span className="text-muted-foreground/50">
+              Artikel • Video • Tools
+            </span>
           </div>
         </div>
       </div>

@@ -16,36 +16,39 @@ export function Testimonials() {
 
   const faqs = [
     {
-      question:
-        "Apakah platform ini cocok untuk pemula yang tidak tahu apa-apa tentang keuangan?",
+      question: "Apakah platform ini cocok untuk pemula yang benar-benar baru?",
       answer:
-        "Tentu saja! Platform kami dirancang khusus untuk pemula. Kami memulai dari konsep dasar dan membangun pengetahuan secara bertahap. Setiap materi dilengkapi dengan penjelasan yang mudah dipahami dan contoh praktis.",
+        "Cocok. Modul disusun berurutan dari konsep paling dasar (budgeting, proteksi) sebelum masuk ke pengenalan investasi dan perencanaan.",
     },
     {
-      question:
-        "Berapa lama waktu yang dibutuhkan untuk menyelesaikan semua materi?",
+      question: "Berapa lama rata-rata menyelesaikan seluruh modul?",
       answer:
-        "Setiap materi dirancang untuk diselesaikan dalam 12-25 menit. Total waktu untuk menyelesaikan semua materi sekitar 2-3 jam, namun Anda bisa belajar sesuai kecepatan Anda sendiri.",
+        "Setiap modul 12–25 menit. Jika ditonton berturut, fondasi utama bisa selesai dalam ±2 jam; Anda bebas atur ritme sendiri.",
     },
     {
-      question: "Apakah saya perlu membayar untuk mengakses semua fitur?",
+      question: "Apakah saya perlu membayar atau membuat akun?",
       answer:
-        "Semua materi pembelajaran dan kalkulator keuangan tersedia gratis. Kami percaya bahwa edukasi keuangan harus dapat diakses oleh semua orang tanpa hambatan finansial.",
+        "Tidak. Akses seluruh materi dan daftar event tanpa login maupun biaya. Fokus langsung ke pembelajaran.",
     },
     {
-      question: "Bagaimana cara kerja kalkulator keuangan di platform ini?",
+      question: "Bagaimana cara mengikuti event atau webinar?",
       answer:
-        "Kalkulator kami menggunakan rumus keuangan yang telah terbukti dan digunakan oleh para ahli. Anda tinggal memasukkan data keuangan Anda, dan sistem akan memberikan analisis serta rekomendasi yang sesuai.",
+        "Buka halaman Event, pilih tab 'Open', lihat detail dan periode pendaftaran. Jika masih terbuka, isi email untuk mendaftar.",
     },
     {
-      question: "Apakah materi di platform ini selalu diperbarui?",
+      question: "Bagaimana cara kerja kalkulator di sini?",
       answer:
-        "Ya, kami secara berkala memperbarui materi untuk memastikan informasi yang diberikan selalu relevan dengan kondisi ekonomi dan peraturan keuangan terkini di Indonesia.",
+        "Kalkulator menggunakan rumus finansial dasar untuk membantu hitung target tabungan, alokasi anggaran, atau proyeksi sederhana—tanpa klaim prediksi kompleks.",
     },
     {
-      question: "Bisakah saya mengakses platform ini dari smartphone?",
+      question: "Seberapa sering materi diperbarui?",
       answer:
-        "Tentu! Platform kami fully responsive dan dapat diakses dengan nyaman dari smartphone, tablet, atau komputer. Anda bisa belajar kapan saja dan di mana saja.",
+        "Konten ditinjau dan ditambah secara berkala menyesuaikan kebutuhan pengguna serta perubahan konteks finansial umum.",
+    },
+    {
+      question: "Apakah bisa diakses dari smartphone?",
+      answer:
+        "Bisa. Tampilan responsif untuk smartphone, tablet, dan desktop agar Anda bisa belajar kapan pun.",
     },
   ];
 
@@ -71,15 +74,14 @@ export function Testimonials() {
   }, [messages]);
 
   return (
-    <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
+    <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 ">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
             Tanya Jawab <span className="text-primary">Interaktif</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Klik pertanyaan di bawah untuk mendapatkan jawaban langsung dari
-            asisten AI kami
+            Klik pertanyaan di bawah untuk melihat jawabannya secara langsung
           </p>
         </div>
 
@@ -90,7 +92,7 @@ export function Testimonials() {
                 <Bot className="w-5 h-5 text-primary-foreground" />
               </div>
               <div>
-                <h3 className="font-semibold">Asisten Keuangan AI</h3>
+                <h3 className="font-semibold">Asisten Keuangan</h3>
                 <p className="text-sm text-muted-foreground">
                   Siap membantu menjawab pertanyaan Anda
                 </p>
@@ -115,7 +117,7 @@ export function Testimonials() {
                 <div className="text-center py-8">
                   <Bot className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                   <p className="text-muted-foreground">
-                    Pilih pertanyaan di bawah untuk memulai percakapan
+                    Pilih pertanyaan di bawah untuk melihat jawaban
                   </p>
                 </div>
               )}

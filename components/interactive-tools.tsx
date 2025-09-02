@@ -81,9 +81,7 @@ export function InteractiveTools() {
         return (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold mb-2">
-                Kalkulator Anggaran (Metode 50/30/20)
-              </h2>
+              <h2 className="text-2xl font-bold mb-2">Kalkulator Anggaran</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div>
                   <Label htmlFor="income" className="text-sm font-medium">
@@ -327,7 +325,7 @@ export function InteractiveTools() {
               {calculators.map((calc) => (
                 <Card
                   key={calc.id}
-                  className={`cursor-pointer transition-all duration-200 ${
+                  className={`cursor-pointer pb-0 transition-all duration-200 ${
                     activeCalculator === calc.id
                       ? "border-primary bg-primary/5"
                       : "border-border hover:border-primary/50"

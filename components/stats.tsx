@@ -2,8 +2,8 @@ export function Stats() {
   const stats = [
     { number: "50k+", label: "Pelajar Aktif" },
     { number: "95%", label: "Pelajar Merasa Puas" },
-    { number: "100+", label: "Modul Pembelajaran" },
-    { number: "100+", label: "Webinar Event" },
+    { number: "50+", label: "Modul Pembelajaran" },
+    { number: "10+", label: "Webinar Event" },
   ];
 
   return (

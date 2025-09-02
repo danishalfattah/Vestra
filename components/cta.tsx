@@ -15,14 +15,13 @@ export function CTA() {
             </div>
 
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
-              Siap Mengubah{" "}
-              <span className="text-primary">Masa Depan Keuangan</span> Anda?
+              Mulai Bangun <span className="text-primary">Fondasi</span>{" "}
+              Keuangan Yang Kuat
             </h2>
 
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-              Bergabunglah dengan ribuan pelajar yang sudah membangun kekayaan
-              dan mengamankan kemandirian finansial mereka melalui edukasi
-              cerdas.
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty leading-relaxed">
+              Akses modul ringkas, ikuti event tematik, dan kuasai dasar
+              budgeting, proteksi, dan investasi gratis tanpa hambatan.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -31,7 +30,7 @@ export function CTA() {
                   size="lg"
                   className="bg-primary hover:bg-primary/90 group"
                 >
-                  Mulai Perjalanan Anda
+                  Mulai Sekarang
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
